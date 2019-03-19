@@ -21,16 +21,3 @@ ggplot(data, aes(x = energy, y = mu_Al)) +
   scale_x_log10()+
   scale_y_log10()
 
-
-## Spline interpolation
-#
-#func = splinefun(x = data$energy, y=data$mu_Al, method="fmm",  ties = mean)
-#func(seq(0, 1, 0.001))
-#data_interp = data.frame(energy = seq(0, 1, 0.001), mu_Al_interp = func(seq(0, 1, 0.001)))
-## Plot mass attenuation coefficient as a function energy
-#
-#ggplot(data_interp, aes(x = energy, y = mu_Al_interp)) + 
-#  geom_line() + 
-#  geom_point() +
-#  scale_x_log10()+
-#  scale_y_log10()
