@@ -25,4 +25,9 @@ linear_params_Al <- rbind(data.frame(m = 0, b = 0), linear_params_Al)
 
 data_and_params_Al <- cbind(data_Al, linear_params_Al)
 
-result_Al <- data_and_params_Al %>% mutate((x*exp(-b)/m)*(exp(-m)))
+result_Al <- data_and_params_Al %>% mutate(partial_integral = (1/(m*x)) * (exp(-x*(m*energy_prev + b)) - exp(-x*(m*energy + b))))
+result_Al <- result_Al %>% mutate(cum_integral = ifelse(!is.na(partial_integral), cumsum(na.omit(partial_integral)), 0))
+
+integral <- result_Al %>% summarise(sum(na.omit(partial_integral)))
+
+                                    
